@@ -1,6 +1,5 @@
 def check_tables(polledInn, boardsInn):
     # Sjkke om table vinner og i så fall kalkulere sum.
-    #print(polledInn)
     winner = False
     i = 0
     while i < len(boardsInn):
