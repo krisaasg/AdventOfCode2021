@@ -1,8 +1,11 @@
+# Not working
+
 def check_tables(polledInn, boardsInn):
     # Sjkke om table vinner og i så fall kalkulere sum.
     winner = False
+    firstLoser = False
     i = 0
-    while i < len(boardsInn) and winner == False:
+    while i < len(boardsInn) and firstLoser == False:
         if winner == False:
             row = 0
             column = 0
@@ -14,10 +17,10 @@ def check_tables(polledInn, boardsInn):
             sumFound = 0
             sumUnmarked = 0
             
-            while row < 5 and winner == False:
+            while row < 5:
                 column = 0
                 sumFound = 0
-                while column < 5 and winner == False:
+                while column < 5:
                     if tempList[row][column] in polledInn:
                         sumFound += 1
                     else:
@@ -25,36 +28,38 @@ def check_tables(polledInn, boardsInn):
                     column += 1
                 if sumFound == 5:
                     winner = True
-                    #winningNumber = 
-                    print("Winner")
+                    #print("Winner")
                 sumFound = 0
                 row += 1
 
             column = 0
-            while column < 5 and winner == False:
+            while column < 5:
                 row = 0
-                while row < 5 and winner == False:
+                while row < 5:
                     if tempList[row][column] in polledInn:
                         sumFound += 1
                     row += 1
                     if sumFound == 5:
                         winner = True
-                        print("Winner")
+                        #print("Winner")
                 sumFound = 0
                 column += 1
             
-            if winner == True:
+            if winner == False and firstLoser == False:
                 # Summere alle umerkede, gange med nummer som utløste seier (siste nummer i polledInn)
                 print(sumUnmarked)
                 print(polledInn[-1])
                 points = sumUnmarked * int(polledInn[-1])
                 print("Winning value: ", points)
+                firstLoser == True
+            
 
             #print(i)
+        winner = False
         i += 6
-    return(winner)
+    return(firstLoser)
 
-f = open ("boards.txt", "r")
+f = open ("t_boards.txt", "r")
 boardsList = f.readlines()
 
 trimmedList = []
@@ -64,13 +69,17 @@ for element in boardsList:
 
 winnerFound = False
 
-polled = open ("polled.txt", "r")
+polled = open ("t_polled.txt", "r")
 polledList = polled.readline().split(",")
 
-i = 5 # Starts with a list of the first five polled numbers.
-while i < len(polledList):
+i = len(polledList) # Starts with a list of the first five polled numbers.
+while i > 0:
     if winnerFound == False:
         #print (polledList[0:i])
         winnerFound = check_tables(polledList[0:i], trimmedList)
         #print("Winner? ", winnerFound)
-    i += 1
+    i -= 1
+
+
+# < 120320
+# < 20560
