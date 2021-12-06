@@ -14,7 +14,7 @@ for line in f:
         tmpList[i] = int(tmpList[i])
     intList.append(tmpList)
     tmpList = []
-print(intList)
+#print(intList)
 
 # Makes list 2D only, and splits into horiList[] and vertList[].
 i = 0
