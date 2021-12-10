@@ -15,9 +15,7 @@ for i in range(0, max(innList)):
         fuelCost = (dist*(dist+1))/2
         fuel = fuel + fuelCost
     if fuel < sumLow or sumLow < 1:
-        #print("New low: ", fuel)
         sumLow = fuel
-    #print(i," - ", fuel)
     fuel = 0
 
 print(sumLow)
